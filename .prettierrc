@@ -1,0 +1,10 @@
+{
+    "tailwindPath": "./tailwind.config.js",
+    "tailwindFunctions": ["clsx"],
+    "plugins": ["prettier-plugin-tailwindcss"],
+    "tailwindPreserveWhitespace": true,
+    "singleQuote": true,
+    "bracketSameLine": false,
+    "trailingComma": "all",
+    "printWidth": 100
+}
