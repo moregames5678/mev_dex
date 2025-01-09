@@ -1,8 +1,10 @@
-import type { Metadata, Viewport } from 'next';
+'use client';
+
+
 import '../styles/globals.css';
 
 import { AppWrapper } from './app-wrapper';
-
+import { usePathname } from 'next/navigation';
 import { Poppins } from 'next/font/google';
 
 const urbanist = Poppins({
@@ -11,30 +13,26 @@ const urbanist = Poppins({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'MD Dashboard',
-  description: 'MD Dashboard description',
-};
 
-export const viewport: Viewport = {
-  width: '1440',
-  initialScale: 0.2,
-  maximumScale: 3,
-  userScalable: true,
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAuthPage = pathname === '/login';
+
   return (
     <html lang="en">
-      <head>
-        <link data-rh="true" rel="icon" href="/favicon-logo.svg" />
-      </head>
-      <body className={`${urbanist.className} antialiased`} suppressHydrationWarning={true}>
-        <AppWrapper>{children}</AppWrapper>
+    <head>
+      <link data-rh="true" rel="icon" href="/favicon-logo.svg" />
+      <title>MD Dashboard</title>
+      <meta name="description" content="MD Dashboard description" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body className={`${urbanist.className} antialiased`} suppressHydrationWarning={true}>
+      {isAuthPage ? children : <AppWrapper>{children}</AppWrapper>}
       </body>
     </html>
   );

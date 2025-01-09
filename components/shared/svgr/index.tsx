@@ -51,5 +51,6 @@ export { default as CheckedOutlineCircle } from '../../../public/ui-svg/checked-
 {
   /* Crypto Icons */
 }
+export { default as SolanaPhantom } from '../../../public/ui-svg/Phantom-Icon_Transparent_White.svg';
 export { default as Solana } from '../../../public/crypto-icons/solana.svg';
 export { default as SolanaWithoutBG } from '../../../public/crypto-icons/solana-without-bg.svg';

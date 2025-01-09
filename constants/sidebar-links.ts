@@ -29,7 +29,7 @@ export const sidebarLinks = [
     },
     {
         label: 'Log Out',
-        href: '/log-out',
+        href: '/login',
         icon: LogOut,
     },
 ];

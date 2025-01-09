@@ -24,7 +24,7 @@ export const Sidebar = () => {
             {i === 3 && <div className="mb-3 mt-5 h-px w-full bg-gd-divider opacity-[32%]" />}
           </Fragment>
         ))}
-        <div key={'Log Out'} className={'mt-[120px] flex flex-col items-center gap-4'}>
+        <Link href="/login" key={'Log Out'} className={'mt-[120px] flex flex-col items-center gap-4'}>
           <CustomButton variant={'inside-red'} classNameWrapper="w-[50px] h-[50px]">
             <LogOut className={'min-h-6 min-w-6 opacity-100'} />
           </CustomButton>
@@ -32,7 +32,7 @@ export const Sidebar = () => {
           <p className={'text-center text-[11px] leading-none tracking-wider opacity-55'}>
             Log Out
           </p>
-        </div>
+        </Link>
       </nav>
     </aside>
   );
