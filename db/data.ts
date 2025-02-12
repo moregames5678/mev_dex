@@ -3,10 +3,7 @@ export const lineData = {
         5, 5, 10, 12, 22, 28, 25, 30, 30, 35, 37, 40, 40, 35, 28, 28, 29, 30, 30, 35, 37, 37,
         34, 30, 34, 34, 30, 30, 30, 20, 20,
     ],
-    Volume: [
-        10, 12, 22, 28, 25, 30, 30, 35, 37, 40, 40, 35, 28, 28, 29, 30, 30, 35, 37, 37,
-        34, 30, 34, 34, 30, 35, 40, 45,
-    ],
+
 }
 
 export const dataUserTransaction = [
@@ -98,55 +95,54 @@ export const dataWalletTransitions = [
         signature: '2FsfeGgYV3Jwzx39...',
         block: 306750858,
         time: '18 secs ago',
-        instructions: ['buy', '1+'],
+        type: 'Buy',
         by: 'J6EP4q6GuZ...auW551oir7',
         value: '0.0004332',
         fee: '0.00003188',
-        programs: 1,
     },
     {
         id: 2,
         signature: 'NLkPEAXUSWy8qUo...',
         block: 306750852,
         time: '20 secs ago',
-        instructions: ['buy', '1+'],
+        type: 'Buy',
         by: 'J6EP4q6GuZ...auW551oir7',
         value: '0.0004332',
         fee: '0.00003188',
-        programs: 1,
+
     },
     {
         id: 3,
         signature: '2tYTG28kBiPvmbkZ...',
         block: 306750845,
         time: '23 secs ago',
-        instructions: ['buy', '1+'],
+        type: 'Buy',
         by: 'J6EP4q6GuZ...auW551oir7',
         value: '0.0004332',
         fee: '0.00003188',
-        programs: 1,
+
     },
     {
         id: 4,
         signature: '267XtK2y2inr44dpW...',
         block: 306750826,
         time: '25 secs ago',
-        instructions: ['sell'],
+        type: 'Sell',
         by: 'J6EP4q6GuZ...auW551oir7',
         value: '1.5709',
         fee: '0.00003188',
-        programs: 1,
+
     },
     {
         id: 5,
         signature: '4CpN8hHVJerJbWH...',
         block: 306750812,
         time: '28 secs ago',
-        instructions: ['buy', '1+'],
+        type: 'Buy',
         by: 'J6EP4q6GuZ...auW551oir7',
         value: '0.0004332',
         fee: '0.00003188',
-        programs: 1,
+
     },
 ];
 

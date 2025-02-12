@@ -10,7 +10,6 @@ import {
   Attacks,
   Pools,
   FlashLoad,
-  TransactionModeCard,
 } from '../../(components)';
 import { SlotInfo } from '@/app/dashboard/(components)';
 import JupiterApi from '../../(components)/jupiter-api';
@@ -21,20 +20,19 @@ export default function page() {
       <SlotInfo />
       <Balance />
       <SettingSave title="Node Bot Settings" />
-      <TransactionModeCard />
       <div className="flex gap-[30px]">
         <div className="flex w-[392px] flex-col gap-[30px]">
-          <Strategy advanceAttacks={false} jitoOnly />
-          <Status title="Node Status" secondTitle="MevDex RPC Shared-Node" />
+          <Strategy />
+          <Status title="Node Status" secondTitle="Custom Node" enableApiInput />
           <Setting title="RDC Settings" />
-          <Bot enableJitoRpc={false} rpcApi={false} />
+          <Bot />
         </div>
         <div className="flex w-[500px] flex-col gap-[30px]">
-          <JupiterApi chart={false} secondTitle="Intermedium Mints Configuration" nodeBot={true} />
+          <JupiterApi />
           <Jito />
         </div>
         <div className="flex w-[288px] flex-col gap-[30px]">
-          <Attacks />
+          <Attacks smartAI />
           <Pools />
           <FlashLoad />
         </div>

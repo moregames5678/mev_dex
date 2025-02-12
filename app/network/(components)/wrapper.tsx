@@ -35,9 +35,14 @@ export const Wrapper = () => {
 
       {tabValue.label === transactionNetworkTabs[1].label && (
         <>
-          <WalletAddress />
+          <WalletAddress/>
           <WalletPerformanceCards />
           <TableQueryResultsWallet />
+        </>
+      )}
+      {tabValue.label === transactionNetworkTabs[2].label && (
+        <>
+          <WalletPerformanceCards />
         </>
       )}
     </div>

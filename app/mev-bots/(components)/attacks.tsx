@@ -7,18 +7,22 @@ export const dataAttacks = [
   {
     title: 'FrontRunning',
     icon: <FrontRunning />,
+    status: false,
   },
   {
     title: 'Sandwich',
     icon: <Sandwich />,
+    status: false,
   },
   {
     title: 'BackRunning',
     icon: <BackRunning />,
+    status: false,
   },
   {
     title: 'Smart-AI Switch',
     icon: <SmartIA />,
+    status: false,
   },
 ];
 
@@ -34,11 +38,11 @@ export const Attacks = ({ smartAI = false }: Props) => {
       <TitleSection title="Attacks" logo=" " />
 
       <ul className="mt-4">
-        {dataSlice.map(({ title, icon: Component }, index) => (
+        {dataSlice.map(({ title, icon: Component, status }, index) => (
           <li key={index} className="mt-4 flex items-center gap-2.5">
             {cloneElement(Component, { className: 'min-h-8 min-w-8' })}
             <span className="text-sm">{title}</span>
-            <Switch className="ml-auto" defaultChecked />
+            <Switch className="ml-auto" checked={status} />
           </li>
         ))}
       </ul>

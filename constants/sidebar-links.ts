@@ -1,4 +1,4 @@
-import { Dashboard, LogOut, MevBots, Network, Support, Wallet } from '@/components/shared/svgr';
+import { Dashboard, LogOut, MevBots, Network, Settings, Wallet } from '@/components/shared/svgr';
 
 
 export const sidebarLinks = [
@@ -23,13 +23,13 @@ export const sidebarLinks = [
         icon: Network,
     },
     {
-        label: 'Support',
-        href: '/support',
-        icon: Support,
+        label: 'Settings',
+        href: '/settings',
+        icon: Settings,
     },
     {
         label: 'Log Out',
-        href: '/login',
+        href: '/signin',
         icon: LogOut,
     },
 ];
@@ -42,6 +42,6 @@ export const dataTitleFromUrl: Record<string, string> = {
     '/mev-bots/deploy/mev-rdc': 'MevDexBot',
     '/mev-bots/deploy/custom-rdc': 'Node Bots',
     '/network': 'Network',
-    '/support': 'Support',
+    '/settings': 'Settings',
 };
 
