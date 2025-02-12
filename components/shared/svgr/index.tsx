@@ -7,6 +7,7 @@ export { default as Dashboard } from '../../../public/sidebar-icons/dashboard.sv
 export { default as Wallet } from '../../../public/sidebar-icons/wallet.svg?url';
 export { default as MevBots } from '../../../public/sidebar-icons/bots.svg?url';
 export { default as Network } from '../../../public/sidebar-icons/network.svg?url';
+export { default as Settings } from '../../../public/sidebar-icons/settings.svg?url';
 export { default as Support } from '../../../public/sidebar-icons/support.svg?url';
 export { default as LogOut } from '../../../public/sidebar-icons/log-out.svg?url';
 

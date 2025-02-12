@@ -3,11 +3,10 @@
 import React from 'react';
 
 import { Clock, CopyTransparent, QuestionMarkWhite, SolanaWithoutBG, View } from '../svgr';
-import { BoxWrapper, CopyWrapper, ImageWrapper } from '../wrappers';
+import { BoxWrapper, CopyWrapper} from '../wrappers';
 import { cn } from '@/lib/utils';
 import { CustomButton } from '../custom-button';
-import { ChevronDown, ChevronLeft, ChevronRight, Info } from 'lucide-react';
-import { Switch } from '@/components/ui';
+import { ChevronDown, ChevronLeft, ChevronRight, } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,11 +21,10 @@ const titlesTransitions = [
   'Signature',
   'Block',
   'Time',
-  'Instructions',
+  'Type',
   'By',
   'Value (SOL)',
   'Fee (SOL)',
-  'Programs',
 ];
 
 export const TableWalletTransaction: React.FC = () => {
@@ -39,15 +37,6 @@ export const TableWalletTransaction: React.FC = () => {
 
         {/*  USER PANEL  */}
         <div className="flex items-center gap-[30px]">
-          <BoxWrapper
-            variant="inside"
-            classNameWrapper="!rounded-[6px] h-[22px]"
-            classNameChild="!rounded-[5px] !pl-2.5 flex items-center !py-0"
-          >
-            <Info size={14} color="#00ffa3" />
-            <span className="ml-1.5 text-secondary">Hide failed</span>
-            <Switch className="-mr-1 ml-2.5 scale-[0.6]" />
-          </BoxWrapper>
 
           <div className="flex items-center gap-2 text-secondary">
             Show
@@ -164,16 +153,13 @@ export const TableWalletTransaction: React.FC = () => {
 
                   <td className="px-5">
                     <div className="flex gap-2.5">
-                      {item.instructions.map((i) => (
                         <CustomButton
-                          key={i}
                           variant="inside-dark"
                           classNameWrapper="!rounded-[4px] h-[30px]"
                           classNameChild="!rounded-[3px] px-1.5"
                         >
-                          {i}
+                          {item.type}
                         </CustomButton>
-                      ))}
                     </div>
                   </td>
 
@@ -192,27 +178,6 @@ export const TableWalletTransaction: React.FC = () => {
                   <td className="whitespace-nowrap px-5">
                     <div className="flex items-center gap-2.5">
                       <SolanaWithoutBG className="h-[14px] w-[11px]" /> {item.fee}
-                    </div>
-                  </td>
-
-                  <td className="px-5">
-                    <div className="flex items-center gap-1">
-                      <ImageWrapper
-                        src={'/crypto-icons/pill.png'}
-                        width={20}
-                        height={20}
-                        alt={'program'}
-                      />{' '}
-                      <SolanaWithoutBG className="h-5 min-w-4" />
-                      <SolanaWithoutBG className="h-5 min-w-4" />
-                      <CustomButton
-                        key={i}
-                        variant="inside-dark"
-                        classNameWrapper="!rounded-[4px] h-5"
-                        classNameChild="!rounded-[3px] px-2"
-                      >
-                        1+
-                      </CustomButton>
                     </div>
                   </td>
                 </tr>

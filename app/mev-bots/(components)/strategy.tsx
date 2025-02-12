@@ -4,8 +4,6 @@ import * as React from 'react';
 import { BoxWrapper, Tabs, TitleSection } from '@/components/shared';
 import { TableArrows } from '@/components/shared/svgr';
 import { Switch } from '@/components/ui';
-
-import { default as BorderStrategy } from '../../../public/border-gradient/strategy.svg?url';
 import { IValueTab } from '@/components/shared/tabs';
 import { cn } from '@/lib';
 
@@ -17,22 +15,29 @@ type Props = {
 export const Strategy = ({ advanceAttacks = true, jitoOnly = false }: Props) => {
   const [tabValue, setTabValue] = React.useState({ label: 'Spam' });
   const [isActiveSwitch, setIsActiveSwitch] = React.useState(advanceAttacks);
+  const [isActiveJitoSwitch, setIsActiveJitoSwitch] = React.useState(jitoOnly);
   const [isAuto, setAuto] = React.useState(false);
 
   const handleSwitchChange = () => {
     setIsActiveSwitch(!isActiveSwitch);
+    setIsActiveJitoSwitch(false);
   };
+
+  const handleSwitchJitoChange = () => {
+    setIsActiveJitoSwitch(!isActiveJitoSwitch);
+    setIsActiveSwitch(false);
+  };
+
 
   const handleTabChange = (value: IValueTab) => {
     setTabValue(value);
-    setAuto(false);
   };
 
   return (
     <BoxWrapper as="section">
       <TitleSection title="Strategy" logo=" " />
       <div className="mt-5 flex items-center justify-between">
-        <span className="text-sm">Jito Only</span> <Switch checked={jitoOnly} />
+        <span className="text-sm">Jito Only</span> <Switch checked={isActiveJitoSwitch} onCheckedChange={handleSwitchJitoChange}/>
       </div>
       <div className="mt-5 flex items-center justify-between">
         <span className="text-sm">Advance Attacks</span>{' '}
@@ -41,16 +46,37 @@ export const Strategy = ({ advanceAttacks = true, jitoOnly = false }: Props) => 
 
       {isActiveSwitch && (
         <div className="relative mt-5 p-2.5">
-          <BorderStrategy className="absolute left-0 top-0 min-h-[160px] min-w-[352px]" />
-          <p className="text-xs font-light leading-[167%]">
-            This strategy sends transactions through both jito and spam, and you usually when using
-            SPAM, failed transaction is a big part of your cost. You usually want to either set{' '}
-            <span className="text-yellow-amber">SIMULATION=true</span>, or have{' '}
-            <span className="text-yellow-amber">SKIP PREFLIGHT = false</span> to reduce the failed
-            transactions, and figuring out a good{' '}
-            <span className="text-yellow-amber">PRIORITY FEE PERCENTILE</span> to use in your{' '}
-            <span className="text-yellow-amber">BASE MINTS</span> based on your setup.
-          </p>
+          <div className="outline rounded outline-offset-8 outline-1 outline-zinc-900">
+            <p className="text-xs font-light leading-[167%]">
+              {tabValue.label === 'Spam' && (
+                <>
+                  This strategy sends transactions through both jito and spam, and you usually when using
+                  SPAM, failed transaction is a big part of your cost. You usually want to either set{' '}
+                  <span className="text-yellow-amber">SIMULATION=true</span>, or have{' '}
+                  <span className="text-yellow-amber">SKIP PREFLIGHT = false</span> to reduce the failed
+                  transactions, and figuring out a good{' '}
+                  <span className="text-yellow-amber">PRIORITY FEE PERCENTILE</span> to use in your{' '}
+                  <span className="text-yellow-amber">BASE MINTS</span> based on your setup.
+                </>
+              )}
+              {tabValue.label === 'Catch-all' && (
+                <>
+                  This type of strategy usually involves using yellowstone with a large number for{' '}
+                  <span className="text-yellow-amber">INTERMEDIUM_MINT_COUNT_FROM_BIRDEYE</span>. This strategy tries to
+                  catch all possible movements for different mints, in the cost of not being able to have a small{' '}
+                  <span className="text-yellow-amber">PROCESS_DELAY</span>, hence may not be able to catch the
+                  opportunity
+                  at the earliest possible time.
+                </>
+              )}
+              {tabValue.label === 'High free spam' && (
+                <>
+                  With this strategy, you want to be the first one to catch an opportunity when it appears, using a very
+                  high priority fee.
+                </>
+              )}
+            </p>
+          </div>
         </div>
       )}
 
@@ -79,7 +105,7 @@ export const Strategy = ({ advanceAttacks = true, jitoOnly = false }: Props) => 
           classNameBtnWrapper="!p-px"
           classNameBtnChild="!py-1 !px-[17px]"
           onClick={handleTabChange}
-          disabled={isAuto}
+          disabled={isAuto && isActiveJitoSwitch}
         />
       )}
     </BoxWrapper>

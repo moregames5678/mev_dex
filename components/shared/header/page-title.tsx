@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxWrapper, SearchInput } from '@/components/shared';
+import { BoxWrapper } from '@/components/shared';
 import { Clip, Copy, Notification, NotificationActive, Wallet } from '../svgr';
 import { CopyWrapper } from '../wrappers/copy-wrapper';
 import { PageTitle } from './title';
@@ -13,12 +13,6 @@ export const Header = () => {
       <PageTitle />
 
       <div className="flex items-center gap-5">
-        <SearchInput
-          defaultValue=""
-          className="text-sm text-secondary"
-          size="w-72 h-[44px]"
-          placeholder="Search..."
-        />
 
         {/* Notification */}
         <button className="hover:animate-pulse active:scale-[97%]">

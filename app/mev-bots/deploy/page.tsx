@@ -77,7 +77,7 @@ const Deploy = () => {
         </li>
 
         {/* Custom RDC / Box 2*/}
-        <li key={'promo-custom-rdc'} className="relative">
+        <li key={'promo-mev-rdc'} className="relative">
           <Image
             src="/bg-image/shadow-line-custom.svg"
             alt="Custom RDC"

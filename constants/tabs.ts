@@ -34,8 +34,12 @@ export const transactionNetworkTabs = [
         lock: false
     },
     {
-        label: 'Wallet Perfomance',
+        label: 'Wallet Performance',
         lock: false
+    },
+    {
+      label: 'MevDex Performance',
+      lock: false
     },
     {
         label: 'Mev Leaderboard',
