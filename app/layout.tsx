@@ -1,10 +1,10 @@
 'use client';
 
-
 import '../styles/globals.css';
 
 import { AppWrapper } from './app-wrapper';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter  } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Poppins } from 'next/font/google';
 
 const urbanist = Poppins({
@@ -13,6 +13,13 @@ const urbanist = Poppins({
   display: 'swap',
 });
 
+function parseCookies(cookie: string) {
+  return cookie.split(';').reduce<Record<string, string>>((acc, c) => {
+    const [key, v] = c.trim().split('=');
+    acc[key] = decodeURIComponent(v);
+    return acc;
+  }, {});
+}
 
 
 export default function RootLayout({
@@ -22,6 +29,19 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const isAuthPage = ['/signin', '/signup'].includes(pathname);
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const cookies = parseCookies(document.cookie);
+    if (!cookies.auth_token && !isAuthPage) {
+      router.push('/signin');
+    } else {
+      setLoading(false);
+    }
+  }, [pathname]);
+
+  // if (loading) return <p>Loading...</p>;
 
   return (
     <html lang="en">

@@ -1,28 +1,50 @@
 // @flow
+
 import * as React from 'react';
 import { cn } from '@/lib';
 import { BoxWrapper, Checkbox, CustomButton } from '@/components/shared';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { SolanaPhantom } from '@/components/shared/svgr';
+import { useAuth } from '@/hooks/useAuth';
+
 
 type Props = {
   className?: string;
 };
 
 export const SignIn = ({ className }: Props) => {
+  const { isAuthenticated, login, loading, error } = useAuth();
   const [isRemember, setIsRemember] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const handleLogin = async () => {
+    if (!email || !password) return;
+    await login(email, password);
+  };
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.location.href = '/';
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className={cn(className, 'mt-6')}>
       <div className="py-8">
-        <span className="text-sm text-secondary">Username</span>
+        <span className="text-sm text-secondary">Email</span>
         <BoxWrapper
           variant="inside"
           classNameWrapper="mt-2.5 mb-3 h-[50px]"
           classNameChild="py-[3px] px-4 pr-1 flex justify-between items-center"
         >
-          <input type="text" placeholder="Enter username" className="w-full" />
+          <input
+            type="text"
+            placeholder="Enter email"
+            className="w-full"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </BoxWrapper>
         <span className="text-sm text-secondary">Password</span>
         <BoxWrapper
@@ -30,13 +52,20 @@ export const SignIn = ({ className }: Props) => {
           classNameWrapper="mt-2.5 mb-2 h-[50px]"
           classNameChild="py-[3px] px-4 pr-1 flex justify-between items-center"
         >
-          <input type="password" placeholder="Enter password" className="w-full" />
+          <input
+            type="password"
+            placeholder="Enter password"
+            className="w-full"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </BoxWrapper>
 
         <CustomButton
           variant="red"
           classNameWrapper="w-full h-[50px] mt-9 active:!scale-[99%]"
           classNameChild="text-[22px] text-white"
+          onClick={handleLogin}
         >
           Login
         </CustomButton>

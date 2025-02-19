@@ -1,3 +1,4 @@
+"use client"
 import React, { Fragment } from 'react';
 import Link from 'next/link';
 
@@ -8,8 +9,15 @@ import { sidebarLinks } from '@/constants';
 import logo from '../../../public/logo.png';
 import { SidebarLink } from './sidebar-link';
 import { CustomButton } from '@/components/shared';
+import { useAuth } from '@/hooks/useAuth';
 
 export const Sidebar = () => {
+    const { logout } = useAuth();
+  
+    const handleLogout = async () => {
+      await logout();
+    };
+
   return (
     <aside className="min-w-[140px] bg-gd-main shadow-main">
       <Link href="/">
@@ -26,7 +34,7 @@ export const Sidebar = () => {
         ))}
         <Link href="/signin" key={'Log Out'} className={'mt-[120px] flex flex-col items-center gap-4'}>
           <CustomButton variant={'inside-red'} classNameWrapper="w-[50px] h-[50px]">
-            <LogOut className={'min-h-6 min-w-6 opacity-100'} />
+            <LogOut onClick={handleLogout} className={'min-h-6 min-w-6 opacity-100'} />
           </CustomButton>
 
           <p className={'text-center text-[11px] leading-none tracking-wider opacity-55'}>
