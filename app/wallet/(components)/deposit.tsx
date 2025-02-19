@@ -1,28 +1,40 @@
+"use client"
 import { BoxWrapper, CopyWrapper, ImageWrapper } from '@/components/shared';
 import { Copy, Wallet } from '@/components/shared/svgr';
+import { useUserData } from '@/hooks/useUserData';
+import {QRCodeSVG } from 'qrcode.react';
+
 
 import { default as BorderDeposit } from '../../../public/border-gradient/wallet-deposit.svg?url';
 
-const code = 'ARsCi2FsfeGgYV3Jwzx397ub2FsfeGgYV3Jwzx39jv3Wd8w...G3S';
-
 export const Deposit = () => {
+  const userData = useUserData();
+
   return (
     <div className="mt-6">
       <span className="text-sm text-secondary">Address</span>
-      <CopyWrapper copyValue={code} className="mt-2.5 w-full">
+      <CopyWrapper copyValue={userData?.wallet} className="mt-2.5 w-full">
         <BoxWrapper
           variant="inside"
           classNameWrapper="!rounded-sm"
           classNameChild="flex items-center !p-3 !pr-4 !rounded-[7px]"
         >
           <Wallet className="min-h-6 min-w-6 opacity-55" />
-          <p className="ml-3 text-sm">{code}</p>
+          <p className="ml-3 text-sm">{userData?.wallet}</p>
           <Copy className="ml-auto h-[11px] w-[13px]" />
         </BoxWrapper>
       </CopyWrapper>
 
       <div className="mx-auto mt-10 flex h-[182px] w-[182px] items-center justify-center rounded-md border-2">
-        <ImageWrapper src={'/crypto-icons/qr-code.png'} alt="qr code" width={152} height={152} />
+        {userData?.wallet && (
+          <QRCodeSVG 
+            value={userData.wallet}
+            size={152}
+            level="H"
+            fgColor="#000000"
+            bgColor="#ffffff"
+          />
+        )}
       </div>
 
       <div className="relative mt-10 p-5">
