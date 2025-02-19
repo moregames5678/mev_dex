@@ -4,7 +4,7 @@ import '../styles/globals.css';
 
 import { AppWrapper } from './app-wrapper';
 import { usePathname, useRouter  } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Poppins } from 'next/font/google';
 
 const urbanist = Poppins({
@@ -30,18 +30,11 @@ export default function RootLayout({
   const pathname = usePathname();
   const isAuthPage = ['/signin', '/signup'].includes(pathname);
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const cookies = parseCookies(document.cookie);
-    if (!cookies.auth_token && !isAuthPage) {
-      router.push('/signin');
-    } else {
-      setLoading(false);
-    }
-  }, [pathname]);
-
-  // if (loading) return <p>Loading...</p>;
+    if (!cookies.auth_token && !isAuthPage) router.push('/signin')
+  }, [pathname, isAuthPage, router]);
 
   return (
     <html lang="en">

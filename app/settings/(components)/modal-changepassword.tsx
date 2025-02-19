@@ -9,8 +9,9 @@ import { default as BorderDialog } from '../../../public/border-gradient/withdra
 
 type Props = {
   className?: string;
+  handleEmailSubmit?: () => void;
 };
-export const ModalChangePassword = ({ className }: Props, handleEmailSubmit: any) => {
+export const ModalChangePassword = ({ className, handleEmailSubmit }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -46,7 +47,7 @@ export const ModalChangePassword = ({ className }: Props, handleEmailSubmit: any
             </BoxWrapper>
           </div>
 
-          <ButtonWithdraw title="Confirm" onClick={() => {handleEmailSubmit; setIsModalOpen(false)}} />
+          <ButtonWithdraw title="Confirm" onClick={() => {if(handleEmailSubmit) handleEmailSubmit(); setIsModalOpen(false)}} />
         </BoxWrapper>
       </Modal>
     </div>

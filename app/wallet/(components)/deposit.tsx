@@ -1,5 +1,5 @@
 "use client"
-import { BoxWrapper, CopyWrapper, ImageWrapper } from '@/components/shared';
+import { BoxWrapper, CopyWrapper } from '@/components/shared';
 import { Copy, Wallet } from '@/components/shared/svgr';
 import { useUserData } from '@/hooks/useUserData';
 import {QRCodeSVG } from 'qrcode.react';

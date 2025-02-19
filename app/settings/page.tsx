@@ -10,7 +10,7 @@ import { Info } from '@/components/shared/svgr';
 
 const Support = () => {
   const userData = useUserData();
-  const { editAccount, loading, error } = useEdit();
+  const { editAccount, error } = useEdit();
 
   const [changeEmailBtn, setChangeEmailBtn] = useState(true);
   const [getNews, setGetNews] = useState(false);
@@ -80,8 +80,7 @@ const Support = () => {
         Simple and reliable 2FA check protects your account from being modified without confirmation by email. Enabling
         this protection, no one can change your account.
       </p>
-      <ModalChangePassword 
-      />
+      <ModalChangePassword/>
     </BoxWrapper>
   );
 };
