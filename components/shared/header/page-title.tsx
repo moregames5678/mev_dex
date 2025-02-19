@@ -34,7 +34,7 @@ export const Header = () => {
         >
           <Wallet className="min-h-6 min-w-6 opacity-55" />
           <p className="text-sm text-secondary">
-            Balance:<span className="ml-2.5 font-bold text-green">{userData?.balance && 0} SOL</span>
+            Balance:<span className="ml-2.5 font-bold text-green">{userData?.balance} SOL</span>
           </p>
         </BoxWrapper>
 
