@@ -1,8 +1,11 @@
-import { ChangeEvent, useState } from 'react';
+"use client"
+import { ChangeEvent, useState, useEffect } from 'react';
 import { BoxWrapper, Checkbox, CustomButton } from '@/components/shared';
 import { cn } from '@/lib';
 import { Solana } from '@/components/shared/svgr';
 import { ModalWithdraw } from './modal-withdraw';
+import { useUserData } from '@/hooks/useUserData';
+
 
 interface Props {
   className?: string;
@@ -15,18 +18,24 @@ const balanceSOL = balanceUsdt / costSol;
 export const Withdrawal = ({ className }: Props) => {
   const [isSaveWallet, setSaveWallet] = useState(true);
 
-  const [percentInput, setPercentInput] = useState(50);
-  const [input, setInput] = useState<string>(((balanceSOL / 100) * percentInput).toFixed(5));
+  const [percentInput, setPercentInput] = useState(100);
+  const userData = useUserData();
+  const [input, setInput] = useState<string>(((userData?.balance / 100) * percentInput).toFixed(5));
+
 
   const handlePercentChange = (value: number) => {
     setPercentInput(value);
-    setInput(((balanceSOL / 100) * value).toFixed(5));
+    setInput(((userData?.balance / 100) * value).toFixed(5));
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^.\d]/g, '');
     setInput(value);
   };
+
+    useEffect(() => {
+      setInput(userData?.balance)
+    }, [userData?.balance]);
 
   return (
     <div className={cn(className, 'mt-6')}>

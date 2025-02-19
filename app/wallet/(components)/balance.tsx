@@ -1,5 +1,7 @@
+"use client"
 import { BoxWrapper } from '@/components/shared';
 import { SolanaWithoutBG, UpdateCircle } from '@/components/shared/svgr';
+import { useUserData } from '@/hooks/useUserData';
 
 type Props = {
   crypto?: number;
@@ -7,6 +9,8 @@ type Props = {
 };
 
 export const Balance = ({ crypto = 0, balance = 0 }: Props) => {
+    const userData = useUserData();
+  
   return (
     <>
       <span className="text-sm text-secondary">Your Trading Balance</span>
@@ -17,7 +21,7 @@ export const Balance = ({ crypto = 0, balance = 0 }: Props) => {
         <div className="flex items-center gap-[14px]">
           <SolanaWithoutBG className="h-[19px] min-w-6" />{' '}
           <div className="flex items-end leading-none">
-            <span className="text-[32px] font-medium">{crypto}</span>
+            <span className="text-[32px] font-medium">{userData?.balance}</span>
             <span className="relative -top-[3px] ml-0.5 text-green">/ $ {balance}</span>
           </div>
         </div>
