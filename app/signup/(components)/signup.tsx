@@ -10,7 +10,7 @@ type Props = {
   className?: string;
 };
 const SignUp = ({ className }: Props) => {
-  const { isAuthenticated, create, loading, error } = useCreate();
+  const { isAuthenticated, create } = useCreate();
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');

@@ -5,22 +5,29 @@ import { cn } from '@/lib';
 import { Solana } from '@/components/shared/svgr';
 import { ModalWithdraw } from './modal-withdraw';
 import { useUserData } from '@/hooks/useUserData';
+import { useWithdraw } from '@/hooks/useWithdrawal';
 
 
 interface Props {
   className?: string;
-}
-
-const costSol = 210.44;
-const balanceUsdt = 752.32;
-const balanceSOL = balanceUsdt / costSol;
+};
 
 export const Withdrawal = ({ className }: Props) => {
-  const [isSaveWallet, setSaveWallet] = useState(true);
+  const [isSaveWallet, setSaveWallet] = useState<boolean>(true);
+  const [wallet, setWallet] = useState<string>('');
 
   const [percentInput, setPercentInput] = useState(100);
   const userData = useUserData();
   const [input, setInput] = useState<string>(((userData?.balance / 100) * percentInput).toFixed(5));
+
+  const { withdraw, error } = useWithdraw();
+
+  const handleWithdraw = async () => {    
+    await withdraw(input, wallet, isSaveWallet);
+    if (!error) {
+    }
+  };
+  
 
 
   const handlePercentChange = (value: number) => {
@@ -74,7 +81,7 @@ export const Withdrawal = ({ className }: Props) => {
         classNameWrapper="mt-2.5 h-[50px]"
         classNameChild="py-[3px] px-4 pr-1 flex justify-between items-center"
       >
-        <input type="text" placeholder="Enter wallet" />
+        <input type="text" value={wallet} onChange={(e) => setWallet(e.target.value)} placeholder="Enter wallet" />
       </BoxWrapper>
 
       <Checkbox
@@ -86,7 +93,7 @@ export const Withdrawal = ({ className }: Props) => {
         classNameLabel="!ml-[14px] text-sm text-pink-hot"
       />
 
-      <ModalWithdraw />
+      <ModalWithdraw handleWithdraw={handleWithdraw}/>
     </div>
   );
 };

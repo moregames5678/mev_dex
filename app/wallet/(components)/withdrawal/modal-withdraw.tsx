@@ -8,9 +8,10 @@ import { Close } from '@/components/shared/svgr';
 
 interface Props {
   className?: string;
+  handleWithdraw: () => void;
 }
 
-export const ModalWithdraw = ({ className }: Props) => {
+export const ModalWithdraw = ({ className, handleWithdraw }: Props ) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -46,7 +47,7 @@ export const ModalWithdraw = ({ className }: Props) => {
             </BoxWrapper>
           </div>
 
-          <ButtonWithdraw title="Confirm" onClick={() => setIsModalOpen(false)} />
+          <ButtonWithdraw title="Confirm" onClick={() => {handleWithdraw(); setIsModalOpen(false)}} />
         </BoxWrapper>
       </Modal>
     </div>

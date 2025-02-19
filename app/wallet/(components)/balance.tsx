@@ -8,7 +8,7 @@ type Props = {
   balance?: number;
 };
 
-export const Balance = ({ crypto = 0, balance = 0 }: Props) => {
+export const Balance = ({ balance = 0 }: Props) => {
     const userData = useUserData();
   
   return (

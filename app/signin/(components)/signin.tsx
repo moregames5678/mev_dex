@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const SignIn = ({ className }: Props) => {
-  const { isAuthenticated, login, loading, error } = useAuth();
+  const { isAuthenticated, login} = useAuth();
   const [isRemember, setIsRemember] = useState(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
