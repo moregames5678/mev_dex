@@ -28,7 +28,7 @@ export const useAuth = () => {
       const response = await axios.post(
         `${API_URL}/account/auth`,
         { email, password },
-        { withCredentials: true }
+//        { withCredentials: true }
       );
 
       if (response.data?.data && !response.data?.error) {
